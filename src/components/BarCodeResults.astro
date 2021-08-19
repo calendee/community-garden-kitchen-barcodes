@@ -1,0 +1,21 @@
+---
+
+---
+
+<section>
+	<ul id="scan-results"></ul>
+</section>
+
+<script>
+   (async function() {
+      const barCodeList = document.getElementById("scan-results");
+      function handleScanEvent(event) {
+         console.log('I got scanned!', event.detail)
+         console.log(barCodeList);
+         barCodeList.innerHTML = `<li>${event.detail.barCode}</li>`
+      } 
+
+      console.log('Scan results listening!');
+      document.addEventListener('scan-completed', handleScanEvent)
+   })();
+</script>
