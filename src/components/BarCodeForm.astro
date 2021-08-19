@@ -1,5 +1,8 @@
 ---
-
+   const ENV = import.meta.env.SNOWPACK_PUBLIC_ENV;
+   console.log('ENV', ENV);
+console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+console.log('__SNOWPACK_ENV__', __SNOWPACK_ENV__)
 ---
    
 <section>
@@ -14,15 +17,14 @@
    (async function() {
       function handleSubmit(event) {
          event.preventDefault();
-         const barCode = document.getElementById("bar-code").value;
-         console.log('Handled!', barCode);
-         const newEvent = new CustomEvent ('scan-completed', {detail: {barCode}});
-         document.dispatchEvent(newEvent)
+         const barCode = document.getElementById("bar-code");
+         const newEvent = new CustomEvent ('scan-completed', {detail: {barCode: barCode.value}});
+         document.dispatchEvent(newEvent);
+         barCode.value = "";
+         barCode.focus();
       }
 
       const barCodeForm = document.getElementById("barcode-form");
-      console.log('Barcodeform');
-      console.log(barCodeForm);
       barCodeForm.addEventListener("submit", handleSubmit);
    })();
 
