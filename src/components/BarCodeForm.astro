@@ -1,31 +1,9 @@
 ---
-   const ENV = import.meta.env.SNOWPACK_PUBLIC_ENV;
-   console.log('ENV', ENV);
-console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-console.log('__SNOWPACK_ENV__', __SNOWPACK_ENV__)
 ---
-   
 <section>
 	<form id="barcode-form">
 		<label for="bar-code">Barcode</label>
 		<input id="bar-code" name="bar-code" placeholder="Tap here and then scan a code">
 	</form>
-   
 </section>
-
-<script>
-   (async function() {
-      function handleSubmit(event) {
-         event.preventDefault();
-         const barCode = document.getElementById("bar-code");
-         const newEvent = new CustomEvent ('scan-completed', {detail: {barCode: barCode.value}});
-         document.dispatchEvent(newEvent);
-         barCode.value = "";
-         barCode.focus();
-      }
-
-      const barCodeForm = document.getElementById("barcode-form");
-      barCodeForm.addEventListener("submit", handleSubmit);
-   })();
-
-</script>
+<script type="module" src={Astro.resolve('../scripts/barcode-form.js')}></script>
