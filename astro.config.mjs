@@ -8,7 +8,7 @@ export default {
 		sitemap: true, // Generate sitemap (set to "false" to disable)
 	},
 	devOptions: {
-		hostname: "192.168.40.166", // The hostname to run the dev server on.
+		hostname: "0.0.0.0", // The hostname to run the dev server on. 0.0.0.0 allows accessing from system's IP address as well.
 		// port: 3000,             // The port to run the dev server on.
 		// tailwindConfig: '',     // Path to tailwind.config.js if used, e.g. './tailwind.config.js'
 	},
