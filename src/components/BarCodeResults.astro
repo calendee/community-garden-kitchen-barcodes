@@ -1,20 +1,27 @@
 ---
 
 ---
-<section>
-	<ul id="scan-results"></ul>
-</section>
-<script>
-	(async function () {
-		const barCodeList = document.getElementById("scan-results");
-		function handleScanEvent(event) {
-			console.log('I got scanned!', event.detail)
-			console.log(barCodeList);
-			barCodeList.innerHTML = `<li>${
-				event.detail.barCode
-			}</li>`
-		}
-		console.log('Scan results listening!');
-		document.addEventListener('scan-completed', handleScanEvent)
-	})();
-</script>
+<style>
+	.hidden {
+		display: none;
+	}
+</style>
+
+<section id="results" class="hidden">
+	<table>
+		<thead>
+			<tr colspan="6">
+				<th>Product Lookups</th>
+			</tr>
+			<tr>
+				<th>Barcode</th>
+				<th>Name</th>
+				<th>Brand</th>
+				<th>Manufacturer</th>
+				<th>Weight</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody id="results-body"></tbody>
+	</table>
+</section>	

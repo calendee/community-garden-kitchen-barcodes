@@ -12,7 +12,7 @@ interface SubmitEvent extends Event {
 	readonly target: BarcodeFormElement;
 }
 
-export function barcodeFormHandler() {
+export function handleBarcodeForm() {
 	// @ts-ignore
 	const API_URL = `${import.meta.env.SNOWPACK_PUBLIC_API_URL}`;
 	const barcodeField = document.getElementById("barcode");
@@ -33,7 +33,7 @@ export function barcodeFormHandler() {
 			detail: {
 				...productInfo,
 				error:
-					error || productInfo.error ? "Failed to fetch product info." : null,
+					error || productInfo.error ? "Failed to fetch product info." : "",
 			},
 		});
 
@@ -47,4 +47,3 @@ export function barcodeFormHandler() {
 	) as BarcodeFormElement;
 	barCodeForm?.addEventListener("submit", handleSubmit);
 }
-barcodeFormHandler();

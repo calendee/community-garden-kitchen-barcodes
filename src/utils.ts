@@ -4,7 +4,6 @@ export function asyncWrapper<T>(somePromise: Promise<T>) {
 	return somePromise
 		.then((data) => ({ error: null, data }))
 		.catch((error) => {
-			console.log("Error", error.message);
 			return { error: { message: error.message }, data: null };
 		});
 }
@@ -13,7 +12,6 @@ export async function fetchJson(
 	input: RequestInfo,
 	init?: RequestInit | undefined,
 ) {
-	console.log("I am in fetchJson!!!");
 	const { error, data: response } = await asyncWrapper(fetch(input, init));
 
 	if (error) {
