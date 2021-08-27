@@ -1,9 +1,19 @@
 ---
 ---
+<style>
+input:user-invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:focus {
+  box-shadow: none;
+}
+
+</style>
 <section>
 	<form id="barcode-form">
-		<label for="bar-code">Barcode</label>
-		<input id="bar-code" name="bar-code" placeholder="Tap here and then scan a code">
+		<label for="barcode">Barcode</label>
+		<input id="barcode" name="barcode" placeholder="Tap here and begin scanning codes" required minlength="12" maxlength="13">
 	</form>
 </section>
 <script type="module" src={Astro.resolve('../scripts/barcode-form.js')}></script>

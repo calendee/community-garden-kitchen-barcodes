@@ -1,32 +1,50 @@
 import { fetchJson } from "../utils";
-export async function barCodeFormHandler() {
+
+interface FormElements extends HTMLFormControlsCollection {
+	barcode: HTMLInputElement;
+}
+
+interface BarcodeFormElement extends HTMLFormElement {
+	readonly elements: FormElements;
+}
+
+interface SubmitEvent extends Event {
+	readonly target: BarcodeFormElement;
+}
+
+export function barcodeFormHandler() {
+	// @ts-ignore
 	const API_URL = `${import.meta.env.SNOWPACK_PUBLIC_API_URL}`;
+	const barcodeField = document.getElementById("barcode");
+	barcodeField.focus();
 
-	function handleSubmit(event) {
+	async function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
-		const barCodeElem = document.getElementById("bar-code");
-		const barCode = barCodeElem?.value;
+		const barcodeElement = event.target.elements.barcode;
+		const barcode = barcodeElement?.value;
 
-		if (!barCodeElem || !barCode) {
-			// TODO: Fire an event for this
+		if (!barcode) {
+			alert("Please enter a valid barcode");
 		}
 
-		const data = fetchJson(`${API_URL}${barCode}`);
-		console.log("Barcode data");
-		console.log(JSON.stringify(data, null));
-
+		const response = await fetchJson(`${API_URL}api/barcode/${barcode}`);
+		const { data: productInfo, error } = response;
 		const newEvent = new CustomEvent("scan-completed", {
 			detail: {
-				barCode,
+				...productInfo,
+				error:
+					error || productInfo.error ? "Failed to fetch product info." : null,
 			},
 		});
 
 		document.dispatchEvent(newEvent);
-		barCodeElem.value = "";
-		barCodeElem.focus();
+		barcodeElement.value = "";
+		barcodeElement.focus();
 	}
 
-	const barCodeForm = document.getElementById("barcode-form");
+	const barCodeForm = document.getElementById(
+		"barcode-form",
+	) as BarcodeFormElement;
 	barCodeForm?.addEventListener("submit", handleSubmit);
 }
-barCodeFormHandler();
+barcodeFormHandler();
