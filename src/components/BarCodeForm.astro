@@ -1,17 +1,10 @@
 ---
 ---
-<style>
-	input:user-invalid {
-		box-shadow: 0 0 5px 1px red;
-	}
-	input:focus {
-		box-shadow: none;
-	}
-</style>
-
-<section>
+<section class="px-4 sm:px-6 lg:px-8">
 	<form id="barcode-form">
-		<label for="barcode">Barcode</label>
-		<input id="barcode" name="barcode" placeholder="Tap here and begin scanning codes" required minlength="12" maxlength="13">
+		<label for="barcode" class="block text-lg font-medium text-gray-500">Barcode</label>
+		<div class="mt-1">
+			<input id="barcode" name="barcode" type="text" placeholder="Tap here and begin scanning codes" required minlength="12" maxlength="13" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full text-lg border-gray-300 rounded-md">
+		</div>
 	</form>
 </section>

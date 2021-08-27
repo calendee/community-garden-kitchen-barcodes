@@ -9,13 +9,13 @@ import BarCodeResults from "../components/BarCodeResults.astro"
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>CGK Barcode Info</title>
 		<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+		<link rel="stylesheet" href="{Astro.resolve('../styles/global.css')}">
 	</head>
-	<body>
+	<body class="bg-white">
 		<main>
-			<header>
-				<div>
-					<h1>Community Garden Kitchen Barcode Info</h1>
-				</div>
+			<header class="mx-auto py-8 px-4 sm:px-6 lg:px-8">
+				<h1 class="mt-1 text-4xl font-extrabold text-green-500 sm:text-5xl sm:tracking-tight lg:text-6xl">Community Garden Kitchen</h1>
+				<p class="max-w-xl mt-5 text-2xl text-gray-500">Inventory Scanning</p>
 			</header>
 			<BarCodeForm/>
 			<BarCodeResults/>
