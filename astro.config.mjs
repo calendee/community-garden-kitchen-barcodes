@@ -10,7 +10,7 @@ export default {
 	devOptions: {
 		hostname: "0.0.0.0", // The hostname to run the dev server on. 0.0.0.0 allows accessing from system's IP address as well.
 		// port: 3000,             // The port to run the dev server on.
-		// tailwindConfig: '',     // Path to tailwind.config.js if used, e.g. './tailwind.config.js'
+		tailwindConfig: "./tailwind.config.js",
 	},
 	renderers: [],
 	dist: "./dist",
