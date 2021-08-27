@@ -4,13 +4,13 @@
 	"private": true,
 	"scripts": {
 		"start": "astro dev",
+		"preview": "astro preview",
 		"build": "astro build"
 	},
 	"devDependencies": {
-		"@snowpack/plugin-dotenv": "^2.2.0",
-		"astro": "^0.19.4"
+		"@snowpack/plugin-dotenv": "^2.2.0"
 	},
 	"dependencies": {
-		"@astrojs/renderer-preact": "^0.2.1"
+		"astro": "^0.20.2"
 	}
 }
