@@ -8,6 +8,9 @@ function createProductRow(resultsBody, productInfo, counter) {
 	newRow.classList.add(oddEven === "odd" ? "bg-white" : "bg-gray-50");
 
 	rowData.forEach((cellData, index) => {
+		let color = index === 0 ? "text-gray-700" : "text-gray-500";
+		color = status.toLowerCase() !== "success" ? "text-red-600" : color;
+
 		const newCell = newRow.insertCell();
 		newCell.classList.add(
 			"px-6",
@@ -15,7 +18,7 @@ function createProductRow(resultsBody, productInfo, counter) {
 			"whitespace-nowrap",
 			"text-sm",
 			"font-medium",
-			index === 0 ? "text-gray-700" : "text-gray-500",
+			color,
 		);
 
 		const cellDataSpan = document.createElement("span");
