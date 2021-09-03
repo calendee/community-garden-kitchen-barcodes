@@ -1,4 +1,8 @@
-import { fetchJson } from "./utils";
+import { fetchJson, unhideResults, fetchRow, generateRow } from "./utils";
+import { resultsBody } from ".";
+import { barcodeState } from ".";
+
+let FIRST_SCAN_COMPLETED = false;
 
 interface FormElements extends HTMLFormControlsCollection {
 	barcode: HTMLInputElement;
@@ -19,25 +23,65 @@ export function handleBarcodeForm() {
 	barcodeField.focus();
 
 	async function handleSubmit(event: SubmitEvent) {
+		if (!FIRST_SCAN_COMPLETED) {
+			unhideResults();
+			FIRST_SCAN_COMPLETED = true;
+		}
+
 		event.preventDefault();
 		const barcodeElement = event.target.elements.barcode;
-		const barcode = barcodeElement?.value;
+		const barcode = barcodeElement?.value?.trim();
 
 		if (!barcode) {
 			alert("Please enter a valid barcode");
 		}
 
-		const response = await fetchJson(`${API_URL}api/barcode/${barcode}`);
-		const { data: productInfo, error } = response;
-		const newEvent = new CustomEvent("scan-completed", {
-			detail: {
-				...productInfo,
-				error:
-					error || productInfo.error ? "Failed to fetch product info." : "",
-			},
-		});
+		const currentBarcodeInfo = barcodeState.getKey(barcode);
 
-		document.dispatchEvent(newEvent);
+		if (currentBarcodeInfo) {
+			barcodeState.setKey(barcode, {
+				...currentBarcodeInfo,
+				quantity: currentBarcodeInfo.quantity + 1,
+			});
+		} else {
+			// TODO: Why isn't the callback results getting the typing?
+			barcodeState.subscribe(barcode, function subscribeCallback(results) {
+				const existingRow = fetchRow(barcode);
+
+				if (existingRow) {
+					const newRow = generateRow(results);
+
+					existingRow.classList.forEach((existingClass) => {
+						newRow.classList.add(existingClass);
+					});
+					existingRow.replaceWith(newRow);
+				} else {
+					const oddOrEven = resultsBody.rows.length % 2 === 0 ? "even" : "odd";
+					const row = generateRow({ ...results, oddOrEven });
+
+					if (resultsBody.rows.length) {
+						const firstRow = resultsBody.firstChild;
+						resultsBody.insertBefore(row, firstRow);
+					} else {
+						resultsBody.appendChild(row);
+					}
+				}
+			});
+
+			barcodeState.setKey(barcode, {
+				barcode,
+				status: "pending",
+				quantity: 1,
+			});
+
+			const response = await fetchJson(`${API_URL}api/barcode/${barcode}`);
+			const { data: productInfo, error } = response;
+			barcodeState.setKey(barcode, {
+				...productInfo.info,
+				status: error || productInfo.error ? "fail" : "success",
+			});
+		}
+
 		barcodeElement.value = "";
 		barcodeElement.focus();
 	}
