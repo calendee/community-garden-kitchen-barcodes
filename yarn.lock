@@ -997,10 +997,10 @@ astring@^1.7.4:
   resolved "https://registry.yarnpkg.com/astring/-/astring-1.7.5.tgz#a7d47fceaf32b052d33a3d07c511efeec67447ca"
   integrity sha512-lobf6RWXb8c4uZ7Mdq0U12efYmpD1UFnyOWVJPTa3ukqZrMopav+2hdNu0hgBF0JIBFK9QgrBDfwYvh3DFJDAA==
 
-astro@^0.20.2:
-  version "0.20.2"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-0.20.2.tgz#329a55a500d52163822c9ce0c41d13f4052c7f55"
-  integrity sha512-eLIG7RlEYSpKqEnRvD2CAXCbjXhtVj8+UahKJ/KvYtjJRwcC6AQtbgnEyhGSdv8+4/mfkult9xvELUMfxY5JCA==
+astro@^0.20.4:
+  version "0.20.4"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-0.20.4.tgz#15d4612367b5aea3702d982cb373ac3a44a7992a"
+  integrity sha512-X3NWn9jWCxx3QSABQuZmeCAYNNaR2LSgCd69SxsaODqa2+kdaB9eISGHBnrHvrF6XKApm4oSPOMVhJawyMh+7Q==
   dependencies:
     "@astrojs/markdown-support" "0.3.0"
     "@astrojs/parser" "0.20.2"
