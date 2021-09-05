@@ -1,10 +1,38 @@
 ---
+	// TODO: Move scan mode stuff to own component!!!~!
 ---
+<style>
+	.selected-scan-mode {
+		@apply bg-green-500 text-white;
+	}
+</style>
+
 <section class="px-4 sm:px-6 lg:px-8">
+	<label for="barcode" class="block text-lg font-medium text-gray-500">Scan Mode</label>
+	<span class="mt-1 relative z-0 inline-flex shadow-sm rounded-md">
+		<button id="scan-mode-single" type="button" class="selected-scan-mode relative inline-flex items-center px-4 py-2 rounded-l-md border border-green-500 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500">
+			Single
+		</button>
+		<button id="scan-mode-batch" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-green-500 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500">
+			Batch
+		</button>
+	</span>
+</section>
+
+<section class="mt-4 px-4 sm:px-6 lg:px-8">
 	<form id="barcode-form">
-		<label for="barcode" class="block text-lg font-medium text-gray-500">Barcode</label>
-		<div class="mt-1">
-			<input id="barcode" name="barcode" type="text" placeholder="Tap here and begin scanning codes" required minlength="12" maxlength="13" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full text-lg border-gray-300 rounded-md">
+		<div id="barcode-form-single">
+			<label for="barcode" class="block text-lg font-medium text-gray-500">Single Barcode</label>
+			<div class="mt-1">
+				<input id="barcode" name="barcode" type="text" placeholder="Tap here and begin scanning codes" minlength="12" maxlength="13" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full text-lg border-gray-300 rounded-md">
+			</div>
 		</div>
+		<div id="barcode-form-batch" class="hidden">
+			<label for="barcode-batch" class="block text-lg font-medium text-gray-500 mt-4">Batch Barcodes</label>
+			<div class="mt-1">
+				<textarea id="barcode-batch" name="barcode-batch" type="text" placeholder="Tap here to use the scanner's 'Data Uplaod' feature to add codes and then press submit." rows="10" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full text-lg border-gray-300 rounded-md"/>
+			</div>
+		</div>
+			<input type="submit" value="Lookup" class="mt-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"/>
 	</form>
 </section>

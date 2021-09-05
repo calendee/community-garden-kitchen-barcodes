@@ -28,7 +28,7 @@ export class StatePubSub<T> {
 	}
 
 	publish(key: string): void {
-		this.subscribers[key].forEach((subscription) => {
+		this.subscribers[key]?.forEach((subscription) => {
 			subscription.callback(this.state[key]);
 		});
 	}
@@ -36,11 +36,17 @@ export class StatePubSub<T> {
 	// Make this only allow setting keys that exist in initial state
 	// How to not let the value by any?  Needs to be barcode info
 	setKey<K extends keyof T>(key: string, value: T[K]) {
-		this.state[key] = {
-			// TODO: if this is null does something need to be fixed???
-			...this.state[key],
-			...value,
-		};
+		if (typeof value === "string") {
+			this.state[key] = value;
+		}
+
+		if (typeof value === "object") {
+			this.state[key] = {
+				// TODO: if this is null does something need to be fixed???
+				...this.state[key],
+				...value,
+			};
+		}
 		this.publish(key);
 	}
 

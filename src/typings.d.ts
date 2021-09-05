@@ -11,3 +11,7 @@ export type BarcodeInfo = {
 export type InitialBarcodeState = {
 	[barcode: string]: BarcodeInfo;
 };
+
+export type InitialScanModeState = {
+	mode: "single" | "batch";
+};
