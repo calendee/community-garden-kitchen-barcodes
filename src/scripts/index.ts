@@ -1,6 +1,7 @@
 import { handleBarcodeForm } from "./barcode-form";
 import { StatePubSub } from "./state-pub-sub";
 import { handleScanModeChanges } from "./handle-scan-mode-changes";
+import { handleCopyButton } from "./handle-copy-button";
 
 import { InitialBarcodeState, InitialScanModeState } from "../typings";
 
@@ -13,5 +14,6 @@ const resultsBody: HTMLTableElement["tBodies"][0] =
 
 handleBarcodeForm();
 handleScanModeChanges();
+handleCopyButton();
 
 export { barcodeState, resultsBody, handleScanModeChanges, scanModeState };

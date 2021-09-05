@@ -13,6 +13,7 @@
 		"tailwindcss": "^2.2.8"
 	},
 	"dependencies": {
-		"astro": "^0.20.4"
+		"astro": "^0.20.4",
+		"copy-to-clipboard": "^3.3.1"
 	}
 }
