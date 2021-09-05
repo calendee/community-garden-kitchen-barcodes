@@ -1,6 +1,15 @@
 ---
 
 ---
+<style>
+	#copy-button {
+		top: 70px;
+		left: 40px;
+	}
+</style>
+<button id="copy-button" type="button" class="selected-scan-mode px-4 py-2 rounded-md border border-green-500 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 relative">
+		Copy
+	</button>
 <section id="results" class="flex flex-col my-6 px-4 sm:px-6 lg:px-8">
 	<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 		<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -24,5 +33,12 @@
 				</table>
 			</div>
 		</div>
+	</div>
+</section>
+
+<section  class="my-6 px-4 sm:px-6 lg:px-8">
+	<label for="barcode-batch" class="block text-lg font-medium text-gray-500 mt-4">Excel Formatted Results</label>
+	<div class="mt-1">
+		<textarea id="excel-formatted-text" disabled name="barcode-batch" type="text" placeholder="After tapping the 'Copy' button, this area will be filled with results in tab delimited format. Select this data and copy it to paste correctly into Excel." rows="10" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full text-lg border-gray-300 rounded-md"/>
 	</div>
 </section>
